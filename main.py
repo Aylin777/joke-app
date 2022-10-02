@@ -14,24 +14,24 @@ for page in range(1, 6):
     # req.raise_for_status()
 
     # save scraped pages to file, it's not nice to overload someone's page with requests
-    # for now this doesn't check if file already has proper content!
     try:
-        f = open("jokes.html", "ab")
+        f = open("jokes"+str(page)+".html", "wb")
         pickle.dump(file, f)
         f.close()
     except FileNotFoundError:
-        with open("joke.html", "wb") as f:
+        with open("jokes"+str(page)+".html", "wb") as f:
             pickle.dump(file, f)
         f.close()
 
 # parse saved pages, sift through them and get the content we need
 jokes_list = []
-with open("jokes.html", "rb") as file:
-    soup = BeautifulSoup(file, "html.parser")
-    jokes_dirty_list = soup.find_all('div', class_="quote post-content post-body")
-    for j in jokes_dirty_list:
-        jokes_list.append(j.text)
-    file.close()
+for page in range(1, 6):
+    with open("jokes"+str(page)+".html", "rb") as file:
+        soup = BeautifulSoup(file, "html.parser")
+        jokes_dirty_list = soup.find_all('div', class_="quote post-content post-body")
+        for j in jokes_dirty_list:
+            jokes_list.append(j.text)
+        file.close()
 
 pprint.pprint(jokes_list)
 
