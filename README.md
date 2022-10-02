@@ -1,13 +1,17 @@
 # joke-app
-## Install dependencies
+## Dependencies
+### Manual installation (not recommended)
 ```bash
-pip install "fastapi[all]"
-pip install uvicorn
+pip install Flask
 pip install beautifulsoup4
 ```
 
+Prefer to use provided `requirements.txt` file :)
+
 ## API usage
-API usage under 127.0.0.1:8000/docs
+API usage under 127.0.0.1:5000
 ```bash
-uvicorn main:app --reload
+flask --app main run
+# or
+python3 -m flask
 ```
