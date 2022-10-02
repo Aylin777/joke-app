@@ -1,10 +1,10 @@
-from fastapi import FastAPI
+from flask import Flask
 import requests
 from bs4 import BeautifulSoup
 import pickle
 import pprint
 
-app = FastAPI()
+app = Flask(__name__)
 # scrape site
 URL = "http://bash.org.pl/latest/?page="
 # take first 5 pages, it should be enough to get 100 jokes
@@ -36,7 +36,7 @@ for page in range(1, 6):
 pprint.pprint(jokes_list)
 
 
-# endpoints, dummy for now
-@app.get("/")
-async def joke_list():
-    pprint.pprint(jokes_list)
+# endpoints
+@app.get('/')
+def joke_list():
+    return jokes_list
