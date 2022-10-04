@@ -15,3 +15,9 @@ flask --app main run
 # or
 python3 -m flask
 ```
+
+## EKS
+
+```bash
+git clone git@github.com:NassK/eks_medium.git
+```
